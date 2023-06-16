@@ -16,4 +16,11 @@ export class Movimentacao extends AbstractEntity{
     valorTotal!: number
     valorHora!: number
     valorHoraMulta!: number 
+
+    constructor (){
+        super();
+        this.veiculo = new Veiculo;
+        this.condutor = new Condutor;
+    }
 }
+
