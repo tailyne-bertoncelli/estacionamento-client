@@ -3,7 +3,7 @@
         <h1 class="text-start my-4">Cadastrar marca</h1>
         <div class="d-flex flex-column align-items-start mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nome da marca</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1">
+            <input type="text" class="form-control" id="exampleFormControlInput1">
         </div>
         <div class="d-flex flex-row justify-content-end">
             <button type="button" class="btn btn-outline-secondary me-3">Cancelar</button>

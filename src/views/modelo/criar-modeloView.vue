@@ -2,8 +2,8 @@
     <section class="container">
         <h1 class="text-start my-4">Cadastrar modelo</h1>
         <div class="d-flex flex-column align-items-start mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nome da modelo:</label>
-            <input type="email" class="form-control mb-3" id="exampleFormControlInput1">
+            <label for="exampleFormControlInput1" class="form-label">Nome do modelo</label>
+            <input type="text" class="form-control mb-3" id="exampleFormControlInput1">
 
             <label for="exampleFormControlInput1" class="form-label">Selecione a marca:</label>
             <select class="form-select" aria-label="Default select example">
