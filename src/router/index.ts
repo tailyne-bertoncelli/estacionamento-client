@@ -104,7 +104,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/editar-veiculo',
     name: 'EditarVeiculo',
     component: () => import('../views/veiculo/editar-veiculoView.vue')
-  },
+  }
 ]
 
 const router = createRouter({
