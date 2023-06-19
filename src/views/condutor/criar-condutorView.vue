@@ -7,7 +7,7 @@
                 <input type="text" class="form-control mb-3" id="exampleFormControlInput1">
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="row">
             <div class="col text-start">
                 <label for="exampleFormControlInput1" class="form-label">CPF</label>
                 <input type="text" class="form-control mb-3" id="exampleFormControlInput1">
@@ -28,7 +28,9 @@
             </div>
         </div>
         <div class="d-flex flex-row justify-content-end">
-            <button type="button" class="btn btn-outline-secondary me-3">Cancelar</button>
+            <router-link to="/lista-condutores">
+                <button type="button" class="btn btn-outline-secondary me-3">Cancelar</button>
+            </router-link>
             <button type="button" class="btn btn-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-check-square" viewBox="0 0 16 16">

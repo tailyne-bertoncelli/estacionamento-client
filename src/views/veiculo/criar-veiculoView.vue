@@ -41,7 +41,9 @@
             </div>
         </div>
         <div class="d-flex flex-row justify-content-end">
-            <button type="button" class="btn btn-outline-secondary me-3">Cancelar</button>
+            <router-link to="/lista-veiculos">
+                <button type="button" class="btn btn-outline-secondary me-3">Cancelar</button>
+            </router-link>
             <button type="button" class="btn btn-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-check-square" viewBox="0 0 16 16">

@@ -4,7 +4,7 @@
             <div class="col">
                 <h1 class="text-start m-0">Veiculos</h1>
             </div>
-            <a href="#" class="col d-flex align-items-center justify-content-end" style="text-decoration: none;">
+            <router-link to="/criar-veiculo" class="col d-flex align-items-center justify-content-end" style="text-decoration: none;">
                 <button type="button" class="btn btn-primary center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-plus-square mr-3" viewBox="0 0 16 16">
@@ -15,7 +15,7 @@
                     </svg>
                     Cadastrar
                 </button>
-            </a>
+            </router-link>
         </div>
         <table class="table table-striped mt-4 col-12">
             <thead>
