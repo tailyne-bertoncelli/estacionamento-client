@@ -6,7 +6,7 @@ export class CondutorClient{
 
     constructor(){
         this.axiosClient = axios.create({
-            baseURL: 'http://localhost:3000/api/estacionamento',
+            baseURL: 'http://localhost:8080/api/condutor',
             headers: { 'Content-Type' : 'application/json'}
         })
     }
@@ -22,24 +22,24 @@ export class CondutorClient{
 
     public async listAll(): Promise<Condutor[]> {
         try {
-            return (await this.axiosClient.get<Condutor[]>('/lista')).data
+            return (await this.axiosClient.get<Condutor[]>(`/lista-condutores`)).data
         } catch (error:any) {
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastra(condutor: Condutor): Promise<void>{
-        try{
-            return (await this.axiosClient.post('/', condutor))
-        } catch (error: any){
+    public async cadastrar(condutor: Condutor): Promise<string> {
+        try {
+            return (await this.axiosClient.post<string>(``, condutor)).data
+        } catch (error:any) {
             return Promise.reject(error.response)
         }
     }
 
-    public async altera(condutor: Condutor): Promise<void>{
-        try{
-            return (await this.axiosClient.put(`/${condutor.id}`, condutor)).data
-        } catch (error: any){
+    public async altera(id: number, condutor: Condutor): Promise<string> {
+        try {
+            return (await this.axiosClient.put<string>(`/${id}`, condutor)).data
+        } catch (error:any) {
             return Promise.reject(error.response)
         }
     }
@@ -52,11 +52,13 @@ export class CondutorClient{
         }
     }
 
-    public async deleta(id: number): Promise<string>{
-        try{
+    public async deleta(id: number): Promise<string> {
+        try {
             return (await this.axiosClient.delete<string>(`/${id}`)).data
-        } catch (error: any){
+        } catch (error:any) {
             return Promise.reject(error.response)
         }
     }
 }
+
+export default new CondutorClient();
