@@ -78,19 +78,31 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/configuracao/configuracao-listView.vue')
     },
     {
-        path: '/criar-configuracao',
+        path: '/configuracao/formulario',
         name: 'CriarConfiguracao',
-        component: () => import('../views/configuracao/criar-configuracaoView.vue')
-    },
-    {
-        path: '/editar-configuracao',
-        name: 'EditarConfiguracao',
-        component: () => import('../views/configuracao/editar-configuracaoView.vue')
+        component: () => import('../views/configuracao/criar-configuracaoView.vue'),
+        children : [
+            {
+                path : '/configuracao/formulario',
+                name : 'configuracao-formulario-editar-view', 
+                component: () => import('../views/configuracao/criar-configuracaoView.vue')
+            },
+            {
+                path : '/configuracao/formulario',
+                name : 'configuracao-formulario-excluir-view', 
+                component: () => import('../views/configuracao/criar-configuracaoView.vue')
+            },
+            {
+                path : '/configuracao/formulario',
+                name : 'configuracao-formulario-ver-view', 
+                component: () => import('../views/configuracao/criar-configuracaoView.vue')
+            },
+        ]
     },
     {
         path: '/lista-modelos',
         name: 'ListarModelos',
-        component: () => import('../views/modelo/modelo-listView.vue'),
+        component: () => import('../views/modelo/modelo-listView.vue')
     },
     {
         path: '/modelo/formulario',
@@ -123,11 +135,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/criar-movimentacao',
         name: 'CriarMovimentacao',
         component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
-    },
-    {
-        path: '/editar-movimentacao',
-        name: 'EditarMovimentacao',
-        component: () => import('../views/movimentacao/editar-movimentacaoView.vue')
     },
 
     {

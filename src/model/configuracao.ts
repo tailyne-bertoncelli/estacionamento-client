@@ -2,7 +2,7 @@ import { AbstractEntity } from "./abstract-entity"
 
 export class Configuracao extends AbstractEntity{
     valorHora!: number
-    valorMinutoHora!: number
+    valorMinutoMulta!: number
     inicioExpediente!: Date
     fimExpediente!: Date
     tempoParaDesconto!: Date

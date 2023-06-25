@@ -6,7 +6,7 @@ export class ConfiguracaoClient{
 
     constructor(){
         this.axiosClient = axios.create({
-            baseURL: 'http://localhost:3000/api/estacionamento',
+            baseURL: 'http://localhost:8080/api/configuracao',
             headers: { 'Content-Type' : 'application/json'}
         })
     }
@@ -22,23 +22,23 @@ export class ConfiguracaoClient{
 
     public async listAll(): Promise<Configuracao[]> {
         try {
-            return (await this.axiosClient.get<Configuracao[]>('/lista')).data
+            return (await this.axiosClient.get<Configuracao[]>(`/lista-configuracoes`)).data
         } catch (error:any) {
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastra(configuracao: Configuracao): Promise<void>{
+    public async cadastra(configuracao: Configuracao): Promise<string>{
         try{
-            return (await this.axiosClient.post('/', configuracao))
+            return (await this.axiosClient.post<string>(``, configuracao)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }
     }
 
-    public async altera(configuracao: Configuracao): Promise<void>{
+    public async altera(id: number, configuracao: Configuracao): Promise<string>{
         try{
-            return (await this.axiosClient.put(`/${configuracao.id}`, configuracao)).data
+            return (await this.axiosClient.put<string>(`/${id}`, configuracao)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }
@@ -52,11 +52,6 @@ export class ConfiguracaoClient{
         }
     }
 
-    public async deleta(id: number): Promise<string>{
-        try{
-            return (await this.axiosClient.delete<string>(`/${id}`)).data
-        } catch (error: any){
-            return Promise.reject(error.response)
-        }
-    }
 }
+
+export default new ConfiguracaoClient();
