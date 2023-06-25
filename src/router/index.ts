@@ -149,6 +149,11 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/veiculo/formulario',
                 name: 'veiculo-formulario-excluir-view',
                 component: () => import ('../views/veiculo/criar-veiculoView.vue')
+            },
+            {
+                path: '/veiculo/formulario',
+                name: 'veiculo-formulario-ver-view',
+                component: () => import ('../views/veiculo/criar-veiculoView.vue')
             }
         ]
     }
