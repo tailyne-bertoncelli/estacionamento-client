@@ -6,7 +6,7 @@ export class MovimentacaoClient{
 
     constructor(){
         this.axiosClient = axios.create({
-            baseURL: 'http://localhost:3000/api/estacionamento',
+            baseURL: 'http://localhost:8080/api/movimentacao',
             headers: { 'Content-Type' : 'application/json'}
         })
     }
@@ -22,23 +22,31 @@ export class MovimentacaoClient{
 
     public async listAll(): Promise<Movimentacao[]> {
         try {
-            return (await this.axiosClient.get<Movimentacao[]>('/lista')).data
+            return (await this.axiosClient.get<Movimentacao[]>(`/lista-movimentacao`)).data
         } catch (error:any) {
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastra(movimentacao: Movimentacao): Promise<void>{
+    public async finalizadas(): Promise<Movimentacao[]>{
         try{
-            return (await this.axiosClient.post('/', movimentacao))
+            return (await this.axiosClient.get<Movimentacao[]>(`/movimentacoes-finalizadas`)).data
+        } catch (error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
+    public async cadastra(movimentacao: Movimentacao): Promise<string>{
+        try{
+            return (await this.axiosClient.post<string>(``, movimentacao)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }
     }
 
-    public async altera(movimentacao: Movimentacao): Promise<void>{
+    public async altera(id: number, movimentacao: Movimentacao): Promise<string>{
         try{
-            return (await this.axiosClient.put(`/${movimentacao.id}`, movimentacao)).data
+            return (await this.axiosClient.put(`/${id}`, movimentacao)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }
@@ -60,3 +68,5 @@ export class MovimentacaoClient{
         }
     }
 }
+
+export default new MovimentacaoClient();

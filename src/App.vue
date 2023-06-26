@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse w-75" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Inicio</a>
+                        <router-link class="nav-link" aria-current="page" to="/movimentacoes-ativa">Inicio</router-link>
                         <!-- <router-link class="nav-link" to="/lista-marcas">Marcas</router-link> -->
                     </li>
                     <li class="nav-item">
@@ -37,7 +37,7 @@
                     </li>
                     <li class="nav-item">
                         <!-- <a class="nav-link" href="#">Pricing</a> -->
-                        <router-link class="nav-link" to="/lista-movimentacoes">Movimentações</router-link> 
+                        <router-link class="nav-link" to="/movimentacoes-finalizadas">Movimentações</router-link> 
                     </li>
                 </ul>
             </div>

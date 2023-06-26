@@ -126,16 +126,45 @@ const routes: Array<RouteRecordRaw> = [
             },
         ]
     },
+
     {
-        path: '/lista-movimentacoes',
+        path: '/movimentacoes-ativa',
+        name: 'MovimentacoesAtivas',
+        component: () => import('../views/movimentacao/movimentacao-ativaView.vue'),
+    },
+    {
+        path: '/movimentacoes-finalizadas',
         name: 'ListarMovimentacoes',
         component: () => import('../views/movimentacao/movimentacao-listView.vue')
     },
     {
-        path: '/criar-movimentacao',
-        name: 'CriarMovimentacao',
-        component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
+        path: '/movimentacao/formulario',
+        name: 'movimentacao-formulario-view',
+        component: () => import('../views/movimentacao/criar-movimentacaoView.vue'),
+        children : [
+            {
+                path : '/movimentacao/formulario',
+                name : 'movimentacao-formulario-editar-view', 
+                component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
+            },
+            {
+                path : '/movimentacao/formulario',
+                name : 'movimentacao-formulario-excluir-view', 
+                component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
+            },
+            {
+                path : '/movimentacao/formulario',
+                name : 'movimentacao-formulario-ver-view', 
+                component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
+            }
+        ]
     },
+    {
+        path: '/movimentacao/relatorio',
+        name: 'relatorio-movimentacao-view',
+        component: () => import('../views/movimentacao/relatorio-movimentacaoView.vue')
+    },
+
 
     {
         path: '/lista-veiculos',
