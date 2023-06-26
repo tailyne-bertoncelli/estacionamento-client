@@ -156,6 +156,11 @@ const routes: Array<RouteRecordRaw> = [
                 path : '/movimentacao/formulario',
                 name : 'movimentacao-formulario-ver-view', 
                 component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
+            },
+            {
+                path : '/movimentacao/formulario',
+                name : 'movimentacao-formulario-finaliza-view', 
+                component: () => import('../views/movimentacao/criar-movimentacaoView.vue')
             }
         ]
     },

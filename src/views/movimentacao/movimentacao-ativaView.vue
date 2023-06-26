@@ -4,7 +4,8 @@
             <div class="col">
                 <h1 class="text-start m-0">Movimentações ativas</h1>
             </div>
-            <router-link to="/movimentacao/formulario" class="col d-flex align-items-center justify-content-end" style="text-decoration: none;">
+            <router-link to="/movimentacao/formulario" class="col d-flex align-items-center justify-content-end"
+                style="text-decoration: none;">
                 <button type="button" class="btn btn-primary center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-plus-square mr-3" viewBox="0 0 16 16">
@@ -21,23 +22,32 @@
             <thead>
                 <tr>
                     <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-1">Status</th>
                     <th scope="col" class="col-2">Entrada</th>
                     <th scope="col" class="col-3">Veiculo</th>
                     <th scope="col" class="col-3">Condutor</th>
-                    <th scope="col" class="col-2">Finalizar</th>
+                    <th scope="col" class="col-1">Finalizar</th>
                     <th scope="col" class="col-1">Ver mais</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>15/06/2023 09:30</td>
-                    <td>Velar preta 2020</td>
-                    <td>Maria Joaquina</td>
-                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">Finalizar</button></td>
+                <tr v-for="mov in movimentacoesAbertas" :key="mov.id">
+                    <th scope="row">{{ mov.id }}</th>
                     <td>
-                        <a href="#">
+                        <span v-if="mov.ativo" class="badge text-bg-success"> Aberta </span>
+                        <span v-if="!mov.ativo" class="badge text-bg-danger"> Finalizada </span>
+                    </td>
+                    <td>{{ mov.entrada }}</td>
+                    <td>{{ mov.veiculo.modelo.nome }} {{ mov.veiculo.cor }} {{ mov.veiculo.ano }}</td>
+                    <td>{{ mov.condutor.nome }}</td>
+                    <td>
+                        <router-link :to="{ name: 'movimentacao-formulario-finaliza-view', query: { id: mov.id, form: 'finalizar' } }">
+                            <button type="button" class="btn btn-danger">Finalizar</button>
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link
+                            :to="{ name: 'movimentacao-formulario-editar-view', query: { id: mov.id, form: 'editar' } }">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-square me-2" viewBox="0 0 16 16" color="black">
                                 <path
@@ -45,32 +55,51 @@
                                 <path fill-rule="evenodd"
                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                             </svg>
-                        </a>
-                        <a href="#">
+                        </router-link>
+                        <router-link
+                            :to="{ name: 'movimentacao-formulario-excluir-view', query: { id: mov.id, form: 'excluir' } }">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-trash3 me-2" viewBox="0 0 16 16" color="black">
                                 <path
                                     d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                             </svg>
-                        </a>
+                        </router-link>
                     </td>
                 </tr>
-                
+
             </tbody>
         </table>
     </div>
-
-    
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import MovimentacaoClient from '@/client/movimentacao.client';
+import { Movimentacao } from '@/model/movimentacao';
 
 export default defineComponent({
-    name: 'HomeView',
-    components: {
-        HelloWorld,
+    name: 'MovimentacaoAberta',
+    data() {
+        return {
+            movimentacoesAbertas: new Array<Movimentacao>()
+        }
     },
+    mounted() {
+        this.findAll();
+    },
+    methods: {
+
+        findAll() {
+            MovimentacaoClient.abertas()
+                .then(sucess => {
+                    this.movimentacoesAbertas = sucess
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        
+       
+    }
 });
 </script>

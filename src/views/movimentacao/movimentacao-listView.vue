@@ -21,9 +21,10 @@
             <thead>
                 <tr>
                     <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-1">Status</th>
                     <th scope="col" class="col-2">Entrada</th>
                     <th scope="col" class="col-2">Saída</th>
-                    <th scope="col" class="col-3">Veiculo</th>
+                    <th scope="col" class="col-2">Veiculo</th>
                     <th scope="col" class="col-3">Condutor</th>
                     <th scope="col" class="col-1">Ver mais</th>
                 </tr>
@@ -31,6 +32,10 @@
             <tbody class="table-group-divider">
                 <tr v-for="mov in movimentacaoList">
                     <th scope="row">{{ mov.id }}</th>
+                    <td>
+                        <span v-if="mov.ativo" class="badge text-bg-success"> Aberta </span>
+                        <span v-if="!mov.ativo" class="badge text-bg-danger"> Finalizada </span>
+                    </td>
                     <td>{{ mov.entrada }}</td>
                     <td>{{ mov.saida }}</td>
                     <td>{{ mov.veiculo.modelo.nome }} - {{ mov.veiculo.ano }}</td>

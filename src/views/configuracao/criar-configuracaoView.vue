@@ -119,7 +119,7 @@ export default defineComponent({
                 })
                 .catch(error => {
                     this.mensagem.ativo = true;
-                    this.mensagem.mensagem = error;
+                    this.mensagem.mensagem = error.data;
                     this.mensagem.titulo = "Error. ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show";
                 });
@@ -131,7 +131,7 @@ export default defineComponent({
                 })
                 .catch(error => {
                     this.mensagem.ativo = true;
-                    this.mensagem.mensagem = error;
+                    this.mensagem.mensagem = error.data;
                     this.mensagem.titulo = "Error. ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show";
                 });
@@ -148,7 +148,7 @@ export default defineComponent({
                 })
                 .catch(error => {
                     this.mensagem.ativo = true;
-                    this.mensagem.mensagem = error;
+                    this.mensagem.mensagem = error.data;
                     this.mensagem.titulo = "Error. ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show";
                 });

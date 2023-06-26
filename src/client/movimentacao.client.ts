@@ -36,6 +36,14 @@ export class MovimentacaoClient{
         }
     }
 
+    public async abertas(): Promise<Movimentacao[]>{
+        try{
+            return (await this.axiosClient.get<Movimentacao[]>(`/movimentacao-aberta`)).data
+        } catch (error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
     public async cadastra(movimentacao: Movimentacao): Promise<string>{
         try{
             return (await this.axiosClient.post<string>(``, movimentacao)).data
@@ -47,6 +55,14 @@ export class MovimentacaoClient{
     public async altera(id: number, movimentacao: Movimentacao): Promise<string>{
         try{
             return (await this.axiosClient.put(`/${id}`, movimentacao)).data
+        } catch (error: any){
+            return Promise.reject(error.response)
+        }
+    }
+
+    public async finaliza(id: number, movimentacao: Movimentacao): Promise<string>{
+        try{
+            return (await this.axiosClient.put(`/finalizar/${id}`, movimentacao)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }
