@@ -3,23 +3,31 @@
         <h1 class="text-center my-4">Detalhes da movimentação</h1>
         <div class="row mb-3">
             <ul class="list-group text-start col-6">
-                <li class="list-group-item"><strong>Entrada:</strong> {{ movimentacao.entrada }}</li>
-                <li class="list-group-item"><strong>Saida:</strong> {{ movimentacao.saida }}</li>
-                <li class="list-group-item"><strong>Tempo em horas:</strong> {{ movimentacao.tempoHoras }}</li>
-                <li class="list-group-item"><strong>Tempo em minutos:</strong> {{ movimentacao.tempoMinutos }}</li>
-                <li class="list-group-item"><strong>Tempo de multa:</strong> {{ movimentacao.tempoMulta }}</li>
+                <li class="list-group-item text-center"><strong>DADOS DO VEICULO</strong></li>
+                <li class="list-group-item"><strong>PLACA:</strong> {{ movimentacao.veiculo.placa }}</li>
+                <li class="list-group-item"><strong>MODELO:</strong> {{ movimentacao.veiculo.modelo.nome }}</li>
+                <li class="list-group-item"><strong>TIPO:</strong> {{ movimentacao.veiculo.tipo }}</li>
+                <li class="list-group-item"><strong>COR:</strong> {{ movimentacao.veiculo.cor }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>ANO:</strong> {{ movimentacao.veiculo.ano }}</li>
             </ul>
             <ul class="list-group text-start col-6">
-                <li class="list-group-item"><strong>Valor horas:</strong> {{ movimentacao.valorHora }}</li>
-                <li class="list-group-item"><strong>Valor desconto: </strong> {{ movimentacao.valorDesconto }}</li>
-                <li class="list-group-item"><strong>Valor multa: </strong>{{ movimentacao.valorMulta }}</li>
-                <li class="list-group-item"><strong>Valor total: </strong>{{ movimentacao.valorTotal }}</li>
-                <li class="list-group-item"></li>
+                <li class="list-group-item text-center"><strong>DADOS DO CONDUTOR</strong></li>
+                <li class="list-group-item"><strong>NOME: </strong> {{ movimentacao.condutor.nome }}</li>
+                <li class="list-group-item"><strong>TELEFONE: </strong>{{ movimentacao.condutor.telefone }}</li>
+                <li class="list-group-item"><strong>CPF: </strong>{{ movimentacao.condutor.cpf }}</li>
+                <li class="list-group-item"><strong>HORAS PAGAS: </strong>{{ movimentacao.condutor.tempoPagoHora }}</li>
             </ul>
         </div>
         <div class="row text-end mb-3">
-            <ul class="list-group text-center">
-                <li class="list-group-item">An item</li>
+            <ul class="list-group text-start">
+                <li class="list-group-item text-center"><strong>DADOS DA MOVIMENTAÇÃO</strong></li>
+                <li class="list-group-item"><strong>ENTRADA: </strong>{{ movimentacao.entrada }}</li>
+                <li class="list-group-item"><strong>SAÍDA: </strong>{{ movimentacao.saida }}</li>
+                <li class="list-group-item"><strong>TEMPO DE PERMANÊNCIA : </strong>{{ movimentacao.tempoHoras }} horas e {{ movimentacao.tempoMinutos }} minutos</li>
+                <li class="list-group-item"><strong>TEMPO DE MULTA: </strong>{{ movimentacao.tempoMulta }} minutos</li>
+                <li class="list-group-item"><strong>VALOR HORAS: </strong> R$ {{ movimentacao.valorHora }}</li>
+                <li class="list-group-item"><strong>VALOR MULTA: </strong> R$ {{ movimentacao.valorMulta }}</li>
+                <li class="list-group-item"><strong>VALOR DESCONTO: </strong> R$ {{ movimentacao.valorDesconto }}</li>
+                <li class="list-group-item"><strong>VALOR TOTAL: </strong> R$ {{ movimentacao.valorTotal }}</li>
             </ul>
         </div>
 

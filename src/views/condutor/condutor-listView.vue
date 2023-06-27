@@ -25,7 +25,6 @@
                     <th scope="col" class="col-3">Nome</th>
                     <th scope="col" class="col-2">Telefone</th>
                     <th scope="col" class="col-1">H. pagas</th>
-                    <th scope="col" class="col-1">H. p/ desconto</th>
                     <th scope="col" class="col-1">Editar</th>
                     <th scope="col" class="col-1">Deletar</th>
                     <th scope="col" class="col-1">Ver mais</th>
@@ -41,7 +40,6 @@
                     <td>{{ condutor.nome }}</td>
                     <td>{{ condutor.telefone }}</td>
                     <td>{{ condutor.tempoPagoHora }}</td>
-                    <td>{{ condutor.tempoDesconto }}</td>
                     <td>
                         <router-link :to="{name: 'condutor-formulario-editar-view', query: {id: condutor.id, form: 'editar'}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

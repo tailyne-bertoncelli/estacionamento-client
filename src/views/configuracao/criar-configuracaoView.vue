@@ -1,6 +1,14 @@
 <template>
     <section class="container col-12">
         <h1 class="text-start my-4">Cadastrar configuração</h1>
+        <div v-if="mensagem.ativo" class="row">
+            <div class="col-md-12 text-start">
+                <div :class="mensagem.css" role="alert">
+                    <strong>{{ mensagem.titulo }}</strong> {{ mensagem.mensagem }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col text-start">
                 <label for="exampleFormControlInput1" class="form-label">Inicio do expediente</label>
