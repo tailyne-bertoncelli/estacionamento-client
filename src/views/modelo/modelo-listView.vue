@@ -25,7 +25,7 @@
                     <th scope="col" class="col-4">Nome</th>
                     <th scope="col" class="col-3">Marca</th>
                     <th scope="col" class="col-1">Editar</th>
-                    <th scope="col" class="col-1">Deletar</th>
+                    <th scope="col" class="col-1">Desativar</th>
                     <th scope="col" class="col-1">Ver mais</th>
                 </tr>
             </thead>

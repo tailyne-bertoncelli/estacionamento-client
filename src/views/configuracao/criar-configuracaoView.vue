@@ -1,6 +1,9 @@
 <template>
     <section class="container col-12">
-        <h1 class="text-start my-4">Cadastrar configuração</h1>
+        <h2 v-if="form === undefined" class="text-start my-4">Cadastrar configuração</h2>
+        <h2 v-if="form === 'ver'" class="text-start my-4">Detalhes da configuração</h2>
+        <h2 v-if="form === 'editar'" class="text-start my-4">Editar configuração</h2>
+
         <div v-if="mensagem.ativo" class="row">
             <div class="col-md-12 text-start">
                 <div :class="mensagem.css" role="alert">

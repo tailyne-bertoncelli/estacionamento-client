@@ -1,6 +1,10 @@
 <template>
     <section class="container col-12">
-        <h1 class="text-start my-4">Cadastrar veiculo</h1>
+        <h2 v-if="form === undefined" class="text-start my-4">Cadastrar veiculo</h2>
+        <h2 v-if="form === 'ver'" class="text-start my-4">Detalhes do veiculo</h2>
+        <h2 v-if="form === 'editar'" class="text-start my-4">Editar veiculo</h2>
+        <h2 v-if="form === 'excluir'" class="text-start my-4">Desativar veiculo</h2>
+
         <div v-if="mensagem.ativo" class="row">
             <div class="col-md-12 text-start">
                 <div :class="mensagem.css" role="alert">
@@ -17,7 +21,7 @@
             <div class="col text-start">
                 <label for="exampleFormControlInput1" class="form-label">Selecione o modelo</label>
                 <select class="form-select" v-model="veiculo.modelo" :disabled="form === 'excluir' || form === 'ver' ? '' : disabled" aria-label="Default select example">
-                    <option v-for="modelo in modeloLista" :key="modelo.id" :value="modelo" selected>{{ modelo.nome }}</option>
+                    <option v-for="modelo in modelosAtivos" :key="modelo.id" :value="modelo" selected>{{ modelo.nome }}</option>
                 </select>
             </div>
         </div>

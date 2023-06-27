@@ -44,9 +44,9 @@ export class VeiculoClient{
         }
     }
 
-    public async desativar(veiculo: Veiculo): Promise<void>{
+    public async desativar(id: number): Promise<Veiculo>{
         try{
-            return (await this.axiosClient.put(`/desativar/${veiculo.id}`)).data
+            return (await this.axiosClient.put(`/desativar/${id}`)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }

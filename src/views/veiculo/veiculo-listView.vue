@@ -21,8 +21,9 @@
             <thead>
                 <tr>
                     <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-1">Status</th>
                     <th scope="col" class="col-2">Placa</th>
-                    <th scope="col" class="col-3">Modelo</th>
+                    <th scope="col" class="col-2">Modelo</th>
                     <th scope="col" class="col-2">Cor</th>
                     <th scope="col" class="col-1">Ano</th>
                     <th scope="col" class="col-1">Editar</th>
@@ -33,6 +34,10 @@
             <tbody class="table-group-divider">
                 <tr v-for="item in veiculoList" :key="item.id">
                     <th scope="row">{{ item.id }}</th>
+                    <td>
+                        <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
+                        <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>
+                    </td>
                     <td>{{ item.placa }}</td>
                     <td>{{ item.modelo.nome }}</td>
                     <td>{{ item.cor }}</td>

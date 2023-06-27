@@ -44,9 +44,9 @@ export class MarcaClient{
         }
     }
 
-    public async desativar(marca: Marca): Promise<void>{
+    public async desativar(id: number): Promise<Marca>{
         try{
-            return (await this.axiosClient.put(`/desativar/${marca.id}`)).data
+            return (await this.axiosClient.put(`/desativar/${id}`)).data
         } catch (error: any){
             return Promise.reject(error.response)
         }

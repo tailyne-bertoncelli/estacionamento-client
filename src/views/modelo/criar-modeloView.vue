@@ -1,6 +1,10 @@
 <template>
     <section class="container">
-        <h1 class="text-start my-4">Cadastrar modelo</h1>
+        <h2 v-if="form === undefined" class="text-start my-4">Cadastrar modelo</h2>
+        <h2 v-if="form === 'ver'" class="text-start my-4">Detalhes do modelo</h2>
+        <h2 v-if="form === 'editar'" class="text-start my-4">Editar modelo</h2>
+        <h2 v-if="form === 'excluir'" class="text-start my-4">Desativar modelo</h2>
+
         <div v-if="mensagem.ativo" class="row">
             <div class="col-md-12 text-start">
                 <div :class="mensagem.css" role="alert">
@@ -29,7 +33,7 @@
                 Editar
             </button>
             <button v-if="form === 'excluir'" type="button" class="btn btn-danger" @click="onClickExcluir()">
-                Excluir
+                Desativar
             </button>
             <router-link to="/lista-marcas">
                 <button v-if="form === 'ver'" type="button" class="btn btn-secondary" @click="findById(modelo.id)">
@@ -142,7 +146,7 @@ export default defineComponent({
                 });
         },
         onClickExcluir() {
-            modeloClient.deleta(this.modelo.id)
+            modeloClient.desativar(this.modelo.id)
                 .then(sucess => {
                     this.modelo = new Modelo()
 

@@ -1,6 +1,10 @@
 <template>
     <section class="container col-12">
-        <h1 class="text-start my-4">Cadastrar movimentação</h1>
+        <h2 v-if="form === undefined" class="text-start my-4">Cadastrar movimentação</h2>
+        <h2 v-if="form === 'ver'" class="text-start my-4">Detalhes da movimentação</h2>
+        <h2 v-if="form === 'editar'" class="text-start my-4">Editar movimentação</h2>
+        <h2 v-if="form === 'excluir'" class="text-start my-4">Excluir movimentação</h2>
+        
         <div v-if="mensagem.ativo" class="row">
             <div class="col-md-12 text-start">
                 <div :class="mensagem.css" role="alert">
@@ -19,7 +23,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Selecione o condutor:</label>
                 <select class="form-select" aria-label="Default select example" v-model="movimentacao.condutor"
                     :disabled="form === 'finalizar' || form === 'excluir' || form === 'ver' ? '' : disabled">
-                    <option v-for="itemCondutor in condutorList" :value="itemCondutor" :key="itemCondutor.id" selected>{{
+                    <option v-for="itemCondutor in condutoresAtivos" :value="itemCondutor" :key="itemCondutor.id" selected>{{
                         itemCondutor.nome }}</option>
                 </select>
             </div>
@@ -28,7 +32,7 @@
             <div class="col text-start">
                 <label for="exampleFormControlInput1" class="form-label">Selecione o veiculo:</label>
                 <select class="form-select" v-model="movimentacao.veiculo"
-                    :disabled="form === 'excluir' || form === 'ver' ? '' : disabled" aria-label="Default select example">
+                    :disabled="form === 'finalizar' ||form === 'excluir' || form === 'ver' ? '' : disabled" aria-label="Default select example">
                     <option v-for="itemVeiculo in veiculoAtivos" :key="itemVeiculo.id" :value="itemVeiculo">{{
                         itemVeiculo.modelo.nome }} - {{ itemVeiculo.cor }} - {{ itemVeiculo.ano }}</option>
                 </select>
