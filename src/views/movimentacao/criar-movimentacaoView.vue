@@ -4,7 +4,8 @@
         <h2 v-if="form === 'ver'" class="text-start my-4">Detalhes da movimentação</h2>
         <h2 v-if="form === 'editar'" class="text-start my-4">Editar movimentação</h2>
         <h2 v-if="form === 'excluir'" class="text-start my-4">Excluir movimentação</h2>
-        
+        <h2 v-if="form === 'finalizar'" class="text-start my-4">Finalizar movimentação</h2>
+
         <div v-if="mensagem.ativo" class="row">
             <div class="col-md-12 text-start">
                 <div :class="mensagem.css" role="alert">
@@ -16,15 +17,16 @@
         <div class="row mb-3">
             <div v-if="form === undefined" class="col-3 text-start">
                 <label for="exampleFormControlInput1" class="form-label">Entrada</label>
-                <input type="text" :disabled="form ==='finalizar' ||form === 'excluir' || form === 'ver' ? '' : disabled" class="form-control"
-                    v-model="movimentacao.entrada" id="exampleFormControlInput1">
+                <input type="text" :disabled="form === 'finalizar' || form === 'excluir' || form === 'ver' ? '' : disabled"
+                    class="form-control" v-model="movimentacao.entrada" id="exampleFormControlInput1">
             </div>
             <div class="col text-start">
                 <label for="exampleFormControlInput1" class="form-label">Selecione o condutor:</label>
                 <select class="form-select" aria-label="Default select example" v-model="movimentacao.condutor"
                     :disabled="form === 'finalizar' || form === 'excluir' || form === 'ver' ? '' : disabled">
-                    <option v-for="itemCondutor in condutoresAtivos" :value="itemCondutor" :key="itemCondutor.id" selected>{{
-                        itemCondutor.nome }}</option>
+                    <option v-for="itemCondutor in condutoresAtivos" :value="itemCondutor" :key="itemCondutor.id" selected>
+                        {{
+                            itemCondutor.nome }}</option>
                 </select>
             </div>
         </div>
@@ -32,7 +34,8 @@
             <div class="col text-start">
                 <label for="exampleFormControlInput1" class="form-label">Selecione o veiculo:</label>
                 <select class="form-select" v-model="movimentacao.veiculo"
-                    :disabled="form === 'finalizar' ||form === 'excluir' || form === 'ver' ? '' : disabled" aria-label="Default select example">
+                    :disabled="form === 'finalizar' || form === 'excluir' || form === 'ver' ? '' : disabled"
+                    aria-label="Default select example">
                     <option v-for="itemVeiculo in veiculoAtivos" :key="itemVeiculo.id" :value="itemVeiculo">{{
                         itemVeiculo.modelo.nome }} - {{ itemVeiculo.cor }} - {{ itemVeiculo.ano }}</option>
                 </select>
@@ -52,12 +55,12 @@
             <button v-if="form === 'excluir'" type="button" class="btn btn-danger" @click="onClickExcluir()">
                 Excluir
             </button>
-            <router-link
-                :to="{ name: 'movimentacao-formulario-finaliza-view', query: { id: movimentacao.id, form: 'finalizar' } }">
-                <button v-if="form === 'finalizar'" type="button" class="btn btn-danger" @click="finalizaMovimentacao()">
-                    Finalizar
-                </button>
-            </router-link>
+
+
+            <button v-if="form === 'finalizar'" type="button" class="btn btn-danger" @click="finalizaMovimentacao()">
+                Finalizar
+            </button>
+
 
         </div>
     </section>
@@ -201,6 +204,7 @@ export default defineComponent({
                     this.mensagem.mensagem = success;
                     this.mensagem.titulo = "Parabens. ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show";
+                    this.$router.push('/movimentacoes-finalizadas')
                 })
                 .catch(error => {
                     this.mensagem.ativo = true;

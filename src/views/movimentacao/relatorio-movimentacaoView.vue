@@ -1,6 +1,6 @@
 <template>
     <section class="container col-12">
-        <h1 class="text-center my-4">Detalhes da movimentação</h1>
+        <h2 class="text-center my-4">Detalhes da movimentação</h2>
         <div class="row mb-3">
             <ul class="list-group text-start col-6">
                 <li class="list-group-item text-center"><strong>DADOS DO VEICULO</strong></li>

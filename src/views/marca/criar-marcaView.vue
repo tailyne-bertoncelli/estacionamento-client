@@ -133,10 +133,10 @@ export default defineComponent({
                     this.$router.push({ name: 'marca-lista-view' });
                 })
                 .catch(error => {
-                    this.mensagem.ativo = true;
-                    this.mensagem.mensagem = error.data;
-                    this.mensagem.titulo = "Error. ";
-                    this.mensagem.css = "alert alert-danger alert-dismissible fade show";
+                    this.mensagem.ativo = false;
+                    // this.mensagem.mensagem = error.data;
+                    // this.mensagem.titulo = "Error. ";
+                    // this.mensagem.css = "alert alert-danger alert-dismissible fade show";
                 });
         }
     }
